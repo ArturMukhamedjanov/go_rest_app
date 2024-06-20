@@ -4,8 +4,7 @@ import "go_rest_app/models"
 
 type Repository interface {
 	InitDB()
-	CreateUser() (string, error)
-	GetUserByUsername() models.User
-	DeleteUserByUsername() string
-	
+	CreateUser(user models.User) (string, error)
+	GetUserByUsername(username string)  (*models.User, error)
+	DeleteUserByUsername(username string) string
 }

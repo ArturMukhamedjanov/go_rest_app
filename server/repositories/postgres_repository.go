@@ -79,10 +79,28 @@ func initTables(serverDB *gorm.DB) {
 
 }
 
-func (repo *PostgresRepo) GetUserByUsername(user models.User) models.User {
-	
+func (repo *PostgresRepo) GetUserByUsername(username string) (*models.User, error) {
+	var user models.User
+	err := repo.db.Where("username = ?", username).First(&user).Error
+	if err != nil {
+		if err == gorm.ErrRecordNotFound {
+			log.Printf("User not found: %v", username)
+			return nil, nil
+		}
+		log.Printf("Error fetching user by username %v: %v", username, err)
+		return nil, err
+	}
+	return &user, nil
 }
 
-func (repo *PostgresRepo) CreateUser(user models.User) (string, error){
+func (repo *PostgresRepo) CreateUser(user models.User) (string, error) {
+	if err := repo.db.Create(&user).Error; err != nil {
+		return "", err
+	}
+	return "User created successfully", nil
+}
 
+func (repo *PostgresRepo) DeleteUserByUsername(username string) string {
+	
+	return "User deleted successfully"
 }
