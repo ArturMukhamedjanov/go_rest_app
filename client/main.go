@@ -6,6 +6,6 @@ import (
 )
 
 func main() {
-	app := app.NewApp(&service.ConsoleUiService{}, service.RestServerService{})
+	app := app.NewApp(&service.ConsoleUiService{}, service.NewRestServerService())
 	app.Start()
 }

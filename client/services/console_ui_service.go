@@ -64,3 +64,9 @@ func (s *ConsoleUiService) OutputRecord(record models.Record) {
 func (s *ConsoleUiService) OutputString(str string) {
 	fmt.Println(str)
 }
+
+func (s *ConsoleUiService) OutputList(list []string) {
+	for _, str := range list {
+		fmt.Println(str)
+	}
+}

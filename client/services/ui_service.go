@@ -10,8 +10,8 @@ type UiService interface {
 	GetUserID() int
 	GetRecordID() int
 	GetCommandName() string
-	OutputUser(models.User) 
+	OutputUser(models.User)
 	OutputRecord(models.Record)
 	OutputString(string)
-
+	OutputList([]string)
 }

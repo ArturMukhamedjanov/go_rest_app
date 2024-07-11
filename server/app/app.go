@@ -25,5 +25,7 @@ func (app *App) initRoutes() {
 	handlers.InitHandlers(repo)
 	router := mux.NewRouter()
 	router.HandleFunc("/register", handlers.RegisterUser).Methods("POST")
+	router.HandleFunc("/authentificate", handlers.AuthentificateUser).Methods("GET")
+	router.HandleFunc("/add/record", handlers.AddRecord).Methods("POST")
 	app.routes = router
 }
